@@ -1,98 +1,82 @@
-Service Monitor API
+# Service Monitor
+
 API em Java/Spring Boot que monitoriza a disponibilidade de serviços e envia alertas para o n8n em caso de falha.
 
-✨ Funcionalidades
-API REST para gestão de alvos de monitorização (CRUD).
+---
 
-Verificação Agendada do status de todos os alvos.
+## Funcionalidades
 
-Persistência de Status (UP/DOWN) na base de dados.
+- API REST para gestão de alvos de monitorização (CRUD).
+- Verificação agendada do status de todos os alvos.
+- Persistência de status (UP/DOWN) na base de dados.
+- Integração com n8n para envio de alertas via webhook.
+- Ambiente conteinerizado com Docker Compose para fácil implementação.
 
-Integração com n8n para envio de alertas via webhook.
+---
 
-Ambiente Conteinerizado com Docker Compose para fácil implementação.
+## Tecnologias Utilizadas
 
-🚀 Tecnologias
-Backend: Java 17, Spring Boot 3, Spring Data JPA
+- **Backend**: Java 17, Spring Boot 3, Spring Data JPA  
+- **Base de Dados**: PostgreSQL  
+- **Automação**: n8n  
+- **Infraestrutura**: Docker, Docker Compose  
+- **Build**: Maven  
 
-Base de Dados: PostgreSQL
+---
 
-Automação: n8n
+## Como Utilizar
 
-Infraestrutura: Docker, Docker Compose
+### Pré-requisitos
 
-Build: Maven
+- Git  
+- Docker e Docker Compose  
+- Instância funcional do [n8n](https://n8n.io)
 
-⚙️ Como Começar
-Pré-requisitos
-Git
+### ⚙️ Configuração
 
-Docker e Docker Compose
+1. **Clone o repositório**:
 
-Instância do n8n
-
-Configuração
-Clone o repositório:
-
-git clone <url-do-seu-repositorio>
-cd service-monitor-api
-
-Obtenha o Webhook do n8n:
-
+   ```bash
+   git clone <url-do-seu-repositorio>
+   cd service-monitor-api
+   ```
+2. **Obtenha o Webhook do n8n**:
 No n8n, crie um workflow com um nó Webhook e copie a URL de teste.
 
-Crie o ficheiro .env:
+3. **Crie o ficheiro .env**:
+   ```bash
+    # Credenciais da Base de Dados
+    POSTGRES_USER=postgres
+    POSTGRES_PASSWORD=sua_senha_secreta
+    POSTGRES_DB=service_monitor
 
-# Credenciais da Base de Dados
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=sua_senha_secreta
-POSTGRES_DB=service_monitor
+    # Host do Postgres para o container da app
+    POSTGRES_HOST=postgres
+    POSTGRES_PORT=5432
 
-# Host do Postgres para o container da app
-POSTGRES_HOST=postgres 
-POSTGRES_PORT=5432
+    # Webhook para alertas
+    n8n.webhook.url=COLE_A_URL_DO_SEU_WEBHOOK_AQUI
+   ```
+4. **Execute a aplicação**:
 
-# Webhook para alertas
-n8n.webhook.url=COLE_A_URL_DO_SEU_WEBHOOK_AQUI
+   ```bash
+    docker-compose up --build -d
+   ```
+   
+estará disponível em: http://localhost:8080
 
-Execute a aplicação:
+## Melhorias Futuras
+Alertas Avançados (n8n):
+Configurar SMTP para envio de e-mails detalhados, integração com Slack e Telegram.
 
-docker-compose up --build -d
+Frontend de Visualização:
+Criar um dashboard para gestão visual dos serviços monitorados.
 
-A API estará disponível em http://localhost:8080. Para verificar os logs, use docker-compose logs -f app.
+Autenticação:
+Proteger a API com Spring Security e autenticação via JWT.
 
-Endpoints da API
-Método
+Métricas e Histórico:
+Armazenar histórico de status para cálculo de uptime e análise de desempenho.
 
-Endpoint
-
-Descrição
-
-POST
-
-/api/monitors
-
-Cria um novo alvo.
-
-GET
-
-/api/monitors
-
-Lista todos os alvos.
-
-DELETE
-
-/api/monitors/{id}
-
-Apaga um alvo pelo ID.
-
-🗺️ Melhorias Futuras (Roadmap)
-Alertas Avançados (n8n): Configurar SMTP para enviar e-mails detalhados. Integrar com Slack ou Telegram.
-
-Frontend de Visualização: Criar um dashboard (React/Vue) para gerir e visualizar o status dos serviços.
-
-Autenticação: Proteger a API com Spring Security e JWT.
-
-Métricas e Histórico: Guardar o histórico de status para calcular uptime e medir o tempo de resposta das requisições.
-
-Configurações Flexíveis: Permitir intervalos de verificação customizáveis por alvo.
+Configurações Flexíveis:
+Permitir personalização do intervalo de verificação por alvo.
