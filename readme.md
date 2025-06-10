@@ -32,7 +32,6 @@ API em Java/Spring Boot que monitoriza a disponibilidade de serviços e envia al
 - Docker e Docker Compose  
 - Instância funcional do [n8n](https://n8n.io)
 
-### ⚙️ Configuração
 
 1. **Clone o repositório**:
 
