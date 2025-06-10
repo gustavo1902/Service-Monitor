@@ -67,7 +67,7 @@ estará disponível em: http://localhost:8080
 
 ## Melhorias Futuras
 Alertas Avançados (n8n):
-Configurar SMTP para envio de e-mails detalhados, integração com Slack e Telegram.
+Configurar SMTP para envio de e-mails detalhados.
 
 Frontend de Visualização:
 Criar um dashboard para gestão visual dos serviços monitorados.
